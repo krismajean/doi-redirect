@@ -1,0 +1,68 @@
+{
+"manifest_version": 3,
+"name": "Academic URL Redirector",
+"version": "2.0.0",
+"description": "Educational tool for URL redirection. Users must ensure compliance with copyright laws and institutional policies. Use at your own risk.",
+"permissions": [
+"storage",
+"webNavigation",
+"scripting",
+"notifications",
+"activeTab"
+],
+"host_permissions": [
+"http://doi.org/*",
+"https://doi.org/*",
+"http://*.doi.org/*",
+"https://*.doi.org/*",
+"http://dx.doi.org/*",
+"https://dx.doi.org/*",
+"http://arxiv.org/*",
+"https://arxiv.org/*",
+"http://*.arxiv.org/*",
+"https://*.arxiv.org/*",
+"http://*.ieee.org/*",
+"https://*.ieee.org/*",
+"http://link.springer.com/*",
+"https://link.springer.com/*",
+"http://*.springer.com/*",
+"https://*.springer.com/*",
+"http://*.nature.com/*",
+"https://*.nature.com/*",
+"http://*.science.org/*",
+"https://*.science.org/*",
+"http://www.nature.com/*",
+"https://www.nature.com/*",
+"http://pubmed.ncbi.nlm.nih.gov/*",
+"https://pubmed.ncbi.nlm.nih.gov/*",
+"http://*.ncbi.nlm.nih.gov/*",
+"https://*.ncbi.nlm.nih.gov/*",
+"<all_urls>"
+],
+"background": {
+"service_worker": "background.js"
+},
+"action": {
+"default_popup": "popup.html",
+"default_icon": {
+"16": "icon16.png",
+"48": "icon48.png",
+"128": "icon128.png"
+}
+},
+"options_page": "options.html", 
+"content_scripts": [
+{
+  "matches": ["<all_urls>"],
+  "js": ["content-script.js"],
+  "run_at": "document_end"
+}
+],
+"icons": {
+"16": "icon16.png",
+"48": "icon48.png",
+"128": "icon128.png"
+}
+}
+
+

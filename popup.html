@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Prefix Redirector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Custom URL Redirector</h1>
+    </div>
+    
+    <div class="content">
+      <div class="toggle-container">
+        <label class="toggle-label">
+          <span id="statusText">Extension Enabled</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="toggleEnabled" checked>
+            <span class="slider"></span>
+          </div>
+        </label>
+      </div>
+
+      <div class="prefix-section">
+        <div class="section-header">
+          <strong>Active Prefix:</strong>
+        </div>
+        <div class="prefix-info">
+          <div class="prefix-name" id="activePrefixName">Loading...</div>
+          <div class="prefix-url" id="activePrefixUrl"></div>
+        </div>
+        <div class="prefix-actions">
+          <button id="tryNextPrefix" class="btn-secondary">Try Next Prefix</button>
+          <button id="openOptions" class="btn-primary">Manage Prefixes</button>
+        </div>
+      </div>
+      
+      <div class="legal-warning">
+        <div class="warning-icon">⚠️</div>
+        <div class="warning-content">
+          <strong>Legal Notice:</strong>
+          <p>This extension is for educational purposes only. Users are responsible for ensuring compliance with copyright laws and institutional policies. Accessing copyrighted materials without authorization may violate applicable laws.</p>
+        </div>
+      </div>
+
+      <div class="info">
+        <strong>How it works:</strong>
+        <ul>
+          <li>Configure URL patterns</li>
+          <li>Set custom redirect prefixes</li>
+          <li>Automatically redirects matching URLs</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>v2.0.0 | <a href="#" id="legalInfo">Legal Info</a></p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

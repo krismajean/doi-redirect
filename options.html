@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Prefix Redirector - Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔗 Custom URL Redirector</h1>
+      <p>Configure URL patterns and redirect prefixes for automatic URL redirection</p>
+    </div>
+
+    <div class="legal-notice">
+      <div class="notice-header">
+        <span class="notice-icon">⚠️</span>
+        <h2>Important Legal Notice</h2>
+      </div>
+      <div class="notice-content">
+        <p><strong>This extension is provided for educational and research purposes only.</strong></p>
+        <ul>
+          <li><strong>Copyright Compliance:</strong> Users are solely responsible for ensuring compliance with copyright laws and institutional policies when accessing academic materials.</li>
+          <li><strong>Institutional Policies:</strong> Many academic institutions prohibit the use of unauthorized access tools. Check your institution's policies before use.</li>
+          <li><strong>Legal Risks:</strong> Accessing copyrighted materials without proper authorization may violate applicable laws and could result in legal consequences.</li>
+          <li><strong>No Warranty:</strong> This software is provided "as is" without warranty of any kind. Use at your own risk.</li>
+        </ul>
+        <p class="notice-footer">
+          <strong>By using this extension, you acknowledge that you understand these risks and agree to use it responsibly and in compliance with applicable laws.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <h2>Redirect Prefixes</h2>
+        <p class="section-description">
+          Add multiple redirect prefixes for redundancy. The extension will use the active prefix (marked with ★).
+          Click "Try Next Prefix" in the popup to rotate through prefixes if one is down.
+        </p>
+
+        <div id="prefixList" class="prefix-list">
+          <!-- Prefixes will be inserted here -->
+        </div>
+
+        <div class="add-prefix-section">
+          <h3>Add New Prefix</h3>
+          <div class="form-group">
+            <label>Prefix Name</label>
+            <input type="text" id="newPrefixName" placeholder="e.g., Academic Access Custom">
+          </div>
+          <div class="form-group">
+            <label>Prefix URL (with trailing slash)</label>
+            <input type="text" id="newPrefixUrl" placeholder="e.g., https://sci-hub.ru/">
+          </div>
+          <button id="addPrefixBtn" class="btn-primary">Add Prefix</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>URL Patterns</h2>
+        <p class="section-description">
+          Configure which URL patterns should trigger automatic redirection. URLs matching active patterns will be redirected through your selected prefix.
+        </p>
+
+        <div id="patternList" class="pattern-list">
+          <!-- Patterns will be inserted here -->
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Advanced Settings</h2>
+        <p class="section-description">
+          Configure advanced features for better performance and error handling.
+        </p>
+
+        <div class="settings-list">
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">DOI Resolution</div>
+              <div class="setting-description">
+                Attempt to resolve DOI URLs to their final destination before redirecting. 
+                <strong>Note:</strong> This may cause CORS errors with some publishers.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="resolveDOIs">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Sci-Hub Error Detection</div>
+              <div class="setting-description">
+                Automatically detect when Sci-Hub shows "Article not in database" and redirect back to the original URL.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="enableSciHubErrorDetection">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Sci-Hub Pre-checking</div>
+              <div class="setting-description">
+                Check if Sci-Hub has the article before redirecting (experimental feature).
+                <strong>Note:</strong> Currently disabled due to technical limitations.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="preCheckSciHub" disabled>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Debug Mode</div>
+              <div class="setting-description">
+                Enable detailed logging in the browser console for troubleshooting.
+                <strong>Note:</strong> Only enable if you're experiencing issues. This will help debug error detection problems.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="debugMode">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Test Error Detection</div>
+              <div class="setting-description">
+                Test the error detection mechanism by simulating a Sci-Hub error page.
+                <strong>Note:</strong> This will redirect you to a test page to verify error detection works.
+              </div>
+            </div>
+            <div class="setting-control">
+              <button id="testErrorDetection" class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Test Now</button>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">DOI Resolution Timeout</div>
+              <div class="setting-description">
+                How long to wait for DOI resolution before giving up (in milliseconds).
+                <strong>Default:</strong> 2000ms (2 seconds)
+              </div>
+            </div>
+            <div class="setting-control">
+              <input type="number" id="doiResolutionTimeout" min="500" max="10000" step="500" value="2000" class="number-input">
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Error Detection Delay</div>
+              <div class="setting-description">
+                How long to wait before checking for Sci-Hub error pages (in milliseconds).
+                <strong>Default:</strong> 1000ms (1 second)
+              </div>
+            </div>
+            <div class="setting-control">
+              <input type="number" id="errorDetectionDelay" min="100" max="5000" step="100" value="1000" class="number-input">
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Auto Prefix Rotation</div>
+              <div class="setting-description">
+                Automatically try the next prefix if the current one fails.
+                <strong>Note:</strong> May cause multiple redirects if prefixes are down.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="autoPrefixRotation">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Show Hover Tooltips</div>
+              <div class="setting-description">
+                Show tooltips when hovering over links that will be redirected. This gives users advance notice before clicking.
+                <strong>Note:</strong> Tooltips appear after a brief delay to avoid cluttering the interface.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="showHoverTooltips">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Show Notifications</div>
+              <div class="setting-description">
+                Show browser notifications for important events like prefix failures or errors.
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="showNotifications">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Help & Support</h2>
+        <p class="section-description">
+          Get help with using the extension and troubleshooting common issues.
+        </p>
+        <div class="help-buttons">
+          <button id="showTutorial" class="btn-secondary">Show Tutorial</button>
+          <button id="showHelp" class="btn-secondary">Help Guide</button>
+          <button id="showErrors" class="btn-secondary">View Errors</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Reset to Defaults</h2>
+        <p class="section-description">
+          Restore the default configuration if you want to start fresh.
+        </p>
+        <button id="resetBtn" class="btn-danger">Reset to Default Configuration</button>
+      </div>
+
+      <div class="save-section">
+        <div id="saveStatus" class="save-status"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Help</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
