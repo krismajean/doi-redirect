@@ -12,6 +12,17 @@ A Chrome extension that automatically redirects academic URLs through custom pre
 
 ## Installation
 
+### Quick Download (Recommended)
+
+**🎯 One-Click Installation:**
+
+1. **Download the extension**: [doi-redirect-extension-v2.0.0.zip](https://github.com/YOUR_USERNAME/doi-redirect/releases/latest/download/doi-redirect-extension-v2.0.0.zip)
+2. **Extract the zip file** to any folder on your computer
+3. **Open Chrome** and go to `chrome://extensions/`
+4. **Enable "Developer mode"** (toggle in top right)
+5. **Click "Load unpacked"** and select the extracted folder
+6. **Done!** The extension is now installed and ready to use
+
 ### From Source
 
 1. Clone this repository:
@@ -127,11 +138,38 @@ The project uses Jest for testing with jsdom environment. Tests are located in t
 
 ### Building
 
-This extension doesn't require a build step - it runs directly from source files. To package for distribution:
+This extension doesn't require a build step - it runs directly from source files. 
 
-1. Ensure all tests pass: `npm test`
-2. Zip the project files (excluding `node_modules`, `.git`, etc.)
-3. Upload to Chrome Web Store or distribute manually
+#### Creating a Release Package
+
+To create a distribution package:
+
+```bash
+# Run the packaging script
+./package-release.sh
+```
+
+This will:
+- Create a clean package with only essential files
+- Generate a versioned zip file (e.g., `doi-redirect-extension-v2.0.0.zip`)
+- Include installation instructions
+
+#### GitHub Releases
+
+For automatic releases:
+
+1. **Create a git tag**: `git tag v2.0.1`
+2. **Push the tag**: `git push origin v2.0.1`
+3. **GitHub Actions** will automatically:
+   - Run tests
+   - Create the package
+   - Generate a release with download links
+
+#### Manual Distribution
+
+1. Run `./package-release.sh` to create the zip file
+2. Upload to Chrome Web Store or distribute manually
+3. Share the zip file with users
 
 ## Contributing
 
