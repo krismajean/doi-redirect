@@ -16,7 +16,7 @@ A Chrome extension that automatically redirects academic URLs through custom pre
 
 **🎯 One-Click Installation:**
 
-1. **Download the extension**: [doi-redirect-extension-v2.0.0.zip](https://github.com/YOUR_USERNAME/doi-redirect/releases/latest/download/doi-redirect-extension-v2.0.0.zip)
+1. **Download the extension**: [doi-redirect-extension-v2.0.0.zip](https://github.com/krismajean/doi-redirect/releases/latest/download/doi-redirect-extension-v2.0.0.zip)
 2. **Extract the zip file** to any folder on your computer
 3. **Open Chrome** and go to `chrome://extensions/`
 4. **Enable "Developer mode"** (toggle in top right)
